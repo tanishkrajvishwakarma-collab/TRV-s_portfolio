@@ -371,30 +371,58 @@ ul {
     align-items: center;
 }
 
+/* =========================================
+   NEW HERO IMAGE & BORDER ANIMATION
+   ========================================= */
+
 .image-wrapper {
     width: 350px;
     height: 350px;
-    border-radius: 120%;
-    padding: 8px;
-    background: var(--gradient-glow);
-    animation: rotateGradient 6s linear infinite;
     position: relative;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@keyframes rotateGradient {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
+/* 1. This creates the animated border behind everything */
+.image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(45deg, var(--accent-blue), var(--accent-purple), var(--accent-cyan), var(--accent-blue));
+    background-size: 300% 300%;
+    border-radius: 50%;
+    animation: glowingBorder 6s ease infinite;
+    z-index: 0; /* Puts the animation in the very back */
 }
 
+@keyframes glowingBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 2. This keeps the link clickable and above the animation */
+.image-wrapper a {
+    width: calc(100% - 16px); /* Leaves an 8px space for the glowing border */
+    height: calc(100% - 16px);
+    position: relative;
+    z-index: 1; /* Pulls the image safely on top of the border */
+    display: block;
+    border-radius: 50%;
+    background-color: var(--bg-main); /* Gives your transparent PNG a solid dark background */
+}
+
+/* 3. This styles your actual profile picture */
 .image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    background: var(--bg-secondary); /* Fallback */
-    border: 4px solid var(--bg-main);
+    background-color: var(--bg-main); /* Extra protection against transparency */
+    border: 4px solid var(--bg-main); /* Adds a clean, solid dark ring inside the glow */
 }
-
 /* =========================================
    ABOUT SECTION
    ========================================= */
