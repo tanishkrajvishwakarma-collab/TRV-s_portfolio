@@ -370,12 +370,6 @@ ul {
     justify-content: center;
     align-items: center;
 }
-.hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .image-wrapper {
     width: 350px;
