@@ -379,6 +379,20 @@ ul {
     background: var(--gradient-glow);
     animation: rotateGradient 6s linear infinite;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
 }
 
 @keyframes rotateGradient {
